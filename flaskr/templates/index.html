@@ -6,6 +6,26 @@
     <link rel="stylesheet" href="/static/style.css">
   </head>
   <body>
-    <h1>中島大河</h1>
+    <h1>中島大河のホームページ</h1>
+    <h2>経歴・履歴</h2>
+    {% if historys == [] %}
+      <p>何の経歴も残していません</p>
+    {% else %}
+      <table border="1">
+        <tr>
+          <th>日付</th>
+          <th>出来事</th>
+          <th>詳細</th>
+        </tr>
+        {% for history in historys %}
+          <tr>
+            <td>history.date</td>
+            <td>history.title</td>
+            <td>history.document</td>
+          </tr>
+        {% endfor %}
+      </table>
+    {% endif %}
+    <a href="{{ url_for('form') }}">編集</a>
   </body>
 </html>
