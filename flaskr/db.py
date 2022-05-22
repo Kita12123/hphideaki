@@ -8,6 +8,5 @@ def connect(sql,commit=False):
     db_data = cur.execute(sql)
     if commit:
         con.commit()
-    con.close()
-    del con, cur
+#    con.close()
     return db_data
