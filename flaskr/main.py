@@ -30,5 +30,5 @@ def del_history():
     date = request.form.get("date",default="????")
     title = request.form.get("title",default="????")
     document = request.form.get("document",default="")
-    db.connect(f"DELETE FROM history WHERE date = '{date}' AND title = '{title}' AND document = '{document}'")
+    db.connect(f"DELETE FROM history WHERE date = {date} AND title = '{title}' AND document = '{document}'")
     return redirect(url_for("index"))
