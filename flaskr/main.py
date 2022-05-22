@@ -25,11 +25,7 @@ def add_history():
     db.connect("INSERT INTO history VALUES (?,?,?)",[date,title,document])
     return redirect(url_for("index"))
 
-@app.route("/delhistory", methods=["POST"])
-def del_history():
-    date = request.form.get("date",default="????")
-    title = request.form.get("title",default="????")
-    document = request.form.get("document",default="")
-    db.connect(f"DELETE FROM history WHERE date = '{date}' AND title = '{title}' AND document = '{document}'")
-    print(date,title,document)
+@app.route("/delhistory/<date><title>", methods=["POST"])
+def del_history(date,title):
+    db.connect(f"DELETE FROM history WHERE date = '{date}' AND title = '{title}'")
     return redirect(url_for("index"))

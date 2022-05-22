@@ -18,17 +18,12 @@
           <th>詳細</th>
           <th></th>
         </tr>
-        {% for history in historys %}
+        {% for his in historys %}
           <tr>
-            <td>{{ history.date }}</td>
-            <td>{{ history.title }}</td>
-            <td>{{ history.document }}</td>
-            <form method="post" action="{{ url_for('del_history') }}">
-              <input type="hidden" name="date" value="{{ history.date }}">
-              <input type="hidden" name="title" value="{{ history.title }}">
-              <input type="hidden" name="document" value="{{ history.document }}">
-              <td><input type=submit value="削除"></td>
-            </form>
+            <td>{{ his.date }}</td>
+            <td>{{ his.title }}</td>
+            <td>{{ his.document }}</td>
+            <td><a href="{{ url_for('del_history') ,date=his.date,title=his.title}}"></a></td>
           </tr>
         {% endfor %}
       </table>
