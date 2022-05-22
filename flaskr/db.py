@@ -2,9 +2,9 @@ import sqlite3
 
 DATABASE = "database.db"
 
-def connect(*args,commit=False):
+def connect(sql,commit=False):
     con = sqlite3.connect(DATABASE)
-    db_data = con.execute(args)
+    db_data = con.execute(sql)
     if commit:
         con.commit()
     con.colse()
