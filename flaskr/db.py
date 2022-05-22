@@ -9,4 +9,5 @@ def connect(sql,commit=False):
     if commit:
         con.commit()
     con.close()
+    del con, cur
     return db_data
