@@ -7,5 +7,5 @@ def connect(sql,commit=False):
     db_data = con.execute(sql)
     if commit:
         con.commit()
-    con.colse()
+    con.close()
     return db_data
