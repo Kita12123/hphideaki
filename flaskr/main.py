@@ -22,5 +22,5 @@ def register():
     date = request.form.get("date",default="????")
     title = request.form.get("title",default="????")
     document = request.form.get("document",default="")
-    db.connect("INSERT INTO history VALUSE (?,?,?)",[date,title,document],commit=True)
+    db.connect(("INSERT INTO history VALUSE (?,?,?)",[date,title,document]),commit=True)
     return redirect(url_for("index"))
