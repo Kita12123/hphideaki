@@ -2,11 +2,13 @@ import sqlite3
 
 DATABASE = "database.db"
 
-def connect(sql,commit=False):
+def connect(sql:str, parameter:list=[]):
     con = sqlite3.connect(DATABASE)
     cur = con.cursor()
-    db_data = cur.execute(sql)
-    if commit:
+    if parameter:
+        db_data = cur.execute(sql,parameter)
         con.commit()
+    else:
+        db_data = cur.execute(sql)
 #    con.close()
     return db_data
