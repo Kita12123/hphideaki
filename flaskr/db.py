@@ -4,8 +4,8 @@ DATABASE = "database.db"
 
 def connect(sql,commit=False):
     con = sqlite3.connect(DATABASE)
-    con.cursor()
-    db_data = con.execute(sql)
+    cur = con.cursor()
+    db_data = cur.execute(sql)
     if commit:
         con.commit()
     con.close()
