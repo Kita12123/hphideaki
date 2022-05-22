@@ -7,7 +7,7 @@ def index():
         "index.html",
         historys = [
             {"date":row[0],"title":row[1],"document":row[2]}
-                for row in db.connect("SELECT * FROM history")
+                for row in db.connect("SELECT * FROM history ORDER BY date ASC")
                 ]
     )
 
@@ -17,10 +17,18 @@ def form():
         "form.html"
     )
 
-@app.route("/register", methods=["POST"])
-def register():
+@app.route("/addhistory", methods=["POST"])
+def add_history():
     date = request.form.get("date",default="????")
     title = request.form.get("title",default="????")
     document = request.form.get("document",default="")
     db.connect("INSERT INTO history VALUES (?,?,?)",[date,title,document])
+    return redirect(url_for("index"))
+
+@app.route("/delhistory", methods=["POST"])
+def del_history():
+    date = request.form.get("date",default="????")
+    title = request.form.get("title",default="????")
+    document = request.form.get("document",default="")
+    db.connect(f"DELETE FROM history WHERE date = '{date}' AND title = '{title}' AND document = '{document}'")
     return redirect(url_for("index"))

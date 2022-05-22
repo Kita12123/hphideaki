@@ -16,16 +16,40 @@
           <th>日付</th>
           <th>出来事</th>
           <th>詳細</th>
+          <th></th>
         </tr>
         {% for history in historys %}
           <tr>
             <td>{{ history.date }}</td>
             <td>{{ history.title }}</td>
             <td>{{ history.document }}</td>
+            <form method="post" action="{{ url_for('del_history') }}">
+              <input type="hidden" name="date" value="{{ hidtory.date }}">
+              <input type="hidden" name="title" value="{{ history.title }}">
+              <input type="hidden" name="document" value="{{ history.document }}">
+              <td><input type=submit name="Del"></td>
+            </form>
           </tr>
         {% endfor %}
       </table>
     {% endif %}
-    <a href="{{ url_for('form') }}">編集</a>
+    <!-- <a href="{{ url_for('form') }}">編集</a> -->
+    <h3>追加</h3>
+    <form method="post" action="{{ url_for('add_history') }}">
+      <table>
+        <tr>
+          <th>日付</th>
+          <th>タイトル</th>
+          <th>詳細</th>
+        </tr>
+        <tr>
+          <td><input type="date" name="date"></td>
+          <td><input type="text" name="title"></td>
+          <td><input type="text" name="document"></td>
+        </tr>
+      </table>
+      <br>
+      <input type="submit" value="登録">
+    </form>
   </body>
 </html>
