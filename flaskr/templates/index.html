@@ -24,7 +24,7 @@
             <td>{{ history.title }}</td>
             <td>{{ history.document }}</td>
             <form method="post" action="{{ url_for('del_history') }}">
-              <input type="hidden" name="date" value="{{ hidtory.date }}">
+              <input type="hidden" name="date" value="{{ history.date }}">
               <input type="hidden" name="title" value="{{ history.title }}">
               <input type="hidden" name="document" value="{{ history.document }}">
               <td><input type=submit name="Del"></td>
@@ -34,6 +34,7 @@
       </table>
     {% endif %}
     <!-- <a href="{{ url_for('form') }}">編集</a> -->
+    <br>
     <h3>追加</h3>
     <form method="post" action="{{ url_for('add_history') }}">
       <table>
