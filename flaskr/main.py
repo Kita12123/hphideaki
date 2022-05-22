@@ -6,11 +6,11 @@ from flask import render_template, url_for, request, redirect
 def index():
     return render_template(
         "index.html",
-        historys = [
-            {"date":row[0],"title":row[1],"document":row[2]}
+#        historys = [
+#            {"date":row[0],"title":row[1],"document":row[2]}
 #                for row in db.connect("SELECT * FROM history ORDER BY date ASC")
-                for row in History.query.all()
-                ]
+#                ]
+        historys = History.query.all()
     )
 
 @app.route("/form")
