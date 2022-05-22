@@ -1,5 +1,8 @@
 from flaskr import app
+from flask import render_template
 
 @app.route("/")    # [現在のURL+"/"]と通信時、実行
 def index():
-   return "Hello World!"    # 画面表示
+   return render_template(
+       "index.html"
+   )
