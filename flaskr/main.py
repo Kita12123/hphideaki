@@ -22,5 +22,5 @@ def add_history():
 
 @app.route("/del-history/<date><title>")
 def del_history(date,title):
-    db.connect(f"DELETE FROM history WHERE date = '{date}' AND title = '{title}'",commit=True)
+    db.connect(f"DELETE FROM history WHERE _date_ = '{date}' AND _title_ = '{title}'",commit=True)
     return redirect(url_for("index"))

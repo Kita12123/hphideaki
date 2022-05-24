@@ -7,4 +7,4 @@ app = Flask(__name__)
 import flaskr.main
 
 from flaskr import db
-db.connect("CREATE TABLE IF NOT EXISTS history (date, title, document)")
+db.connect("CREATE TABLE IF NOT EXISTS history (_date_ DATE, _title_ TEXT, _document_ TEXT)",commit=True)
