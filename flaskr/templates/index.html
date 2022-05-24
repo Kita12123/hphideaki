@@ -8,28 +8,6 @@
   <body>
     <h1>中島大河のホームページ</h1>
     <h2>経歴・履歴</h2>
-    {% if historys == [] %}
-      <p>何の経歴も残していません</p>
-    {% else %}
-      <table border="1">
-        <tr>
-          <th>日付</th>
-          <th>タイトル</th>
-          <th>詳細</th>
-          <th></th>
-        </tr>
-        {% for his in historys %}
-          <tr>
-            <td>{{ his.date }}</td>
-            <td>{{ his.title }}</td>
-            <td>{{ his.document }}</td>
-            <td><button onclick="{{ url_for('del_history',date=his.date,title=his.title) }}">削除</button></td>
-            <!--<td><a href="{{ url_for('del_history',date=his.date,title=his.title) }}">削除</a></td>-->
-          </tr>
-        {% endfor %}
-      </table>
-    {% endif %}
-    <br>
     <h3>追加</h3>
     <form method="post" action="{{ url_for('add_history') }}">
       <table>
@@ -47,5 +25,31 @@
       <br>
       <input type="submit" value="登録">
     </form>
+    <br>
+    <h3>一覧</h3>
+    {% if historys == [] %}
+      <p>何の経歴も残していません</p>
+    {% else %}
+      <table border="1">
+        <tr>
+          <th>日付</th>
+          <th>タイトル</th>
+          <th>詳細</th>
+          <th></th>
+        </tr>
+        <form method="post" action="{{ url_for('del_history') }}">
+          {% for his in historys %}
+            <tr>
+              <td>{{ his.date }}</td>
+              <td>{{ his.title }}</td>
+              <td>{{ his.document }}</td>
+              <input type="hidden" name="date" value="{{ his.date }}">
+              <input type="hidden" name="title" value="{{ his.title }}">
+              <td><input type="submit" value="削除"></td>
+            </tr>
+          {% endfor %}
+        </form>
+      </table>
+    {% endif %}
   </body>
 </html>

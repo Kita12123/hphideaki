@@ -29,8 +29,10 @@ def add_history():
     SQL.close()
     return redirect(url_for("index"))
 
-@app.route("/del-history/<date><title>")
-def del_history(date,title):
+@app.route("/del-history", methods=["POST"])
+def del_history():
+    date = request.form.get("date",default="????")
+    title = request.form.get("title",default="????")
     SQL.open()
     SQL.cur.execute(f"DELETE FROM history WHERE _date_ = '{date}' AND _title_ = '{title}'")
     SQL.commit()
