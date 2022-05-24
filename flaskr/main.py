@@ -21,7 +21,7 @@ def add_history():
     date = request.form.get("date",default="????")
     title = request.form.get("title",default="????")
     document = request.form.get("document",default="")
-    db.connect("INSERT INTO history VALUES (?,?,?)",[date,title,document],commit=True)
+    db.connect("INSERT INTO history VALUES (%s,%s,%s)",[date,title,document],commit=True)
     return redirect(url_for("index"))
 
 @app.route("/del-history/<date><title>")
