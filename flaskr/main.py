@@ -8,6 +8,7 @@ SQL = DB()
 def index():
     SQL.open()
     try:
+        print(SQL.cur.execute("SELECT * FROM history ORDER BY _date_ ASC").fetchall())
         historys = [
             {"date":row[0], "title":row[1], "document":row[2]}
                 for row in SQL.cur.execute("SELECT * FROM history ORDER BY _date_ ASC").fetchall()
