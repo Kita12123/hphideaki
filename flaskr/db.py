@@ -14,3 +14,20 @@ def connect(sql:str, parameter:list=[], commit=False):
         con.commit()
 #    con.close()
     return db_data
+
+def select(sql:str):
+    with psycopg2.connect(DSN) as conn:
+        with conn.cursor() as cur:
+            return cur.execute(sql).fetchall()
+
+def insert(sql:str,param:list):
+    with psycopg2.connect(DSN) as conn:
+        conn.autocommit = True
+        with conn.cursor() as cur:
+            cur.execute(sql, param)
+
+def delete(sql:str):
+    with psycopg2.connect(DSN) as conn:
+        conn.autocommit = True
+        with conn.cursor() as cur:
+            cur.execute(sql)

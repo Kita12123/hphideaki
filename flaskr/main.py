@@ -4,7 +4,7 @@ from flask import render_template, url_for, request, redirect
 
 @app.route("/")    # [現在のURL+"/"]と通信時、実行
 def index():
-    db_data = db.connect("SELECT * FROM history ORDER BY _date_ ASC")
+    db_data = db.select("SELECT * FROM history ORDER BY _date_ ASC")
     if db_data == None:
         historys = []
     else:
@@ -22,10 +22,10 @@ def add_history():
     date = request.form.get("date",default="????")
     title = request.form.get("title",default="????")
     document = request.form.get("document",default="")
-    db.connect("INSERT INTO history VALUES (%s,%s,%s)",[date,title,document],commit=True)
+    db.insert("INSERT INTO history VALUES (%s,%s,%s)",[date,title,document])
     return redirect(url_for("index"))
 
 @app.route("/del-history/<date><title>")
 def del_history(date,title):
-    db.connect(f"DELETE FROM history WHERE _date_ = '{date}' AND _title_ = '{title}'",commit=True)
+    db.delete(f"DELETE FROM history WHERE _date_ = '{date}' AND _title_ = '{title}'")
     return redirect(url_for("index"))
