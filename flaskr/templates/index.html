@@ -14,7 +14,7 @@
       <table border="1">
         <tr>
           <th>日付</th>
-          <th>出来事</th>
+          <th>タイトル</th>
           <th>詳細</th>
           <th></th>
         </tr>
@@ -23,12 +23,12 @@
             <td>{{ his.date }}</td>
             <td>{{ his.title }}</td>
             <td>{{ his.document }}</td>
-            <td><a href="{{ url_for('del_history',id=his.id) }}">[削除]</a></td>
+            <td><button onclick="{{ url_for('del_history',date=his.date,title=his.title) }}">削除</button></td>
+            <!--<td><a href="{{ url_for('del_history',date=his.date,title=his.title) }}">削除</a></td>-->
           </tr>
         {% endfor %}
       </table>
     {% endif %}
-    <!-- <a href="{{ url_for('form') }}">編集</a> -->
     <br>
     <h3>追加</h3>
     <form method="post" action="{{ url_for('add_history') }}">
