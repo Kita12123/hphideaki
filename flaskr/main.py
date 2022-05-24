@@ -1,8 +1,7 @@
-from flaskr import app
+from flaskr import app, db
 from flask import render_template, url_for, request, redirect
 
-from db import DB
-SQL = DB()
+SQL = db.DB()
 
 @app.route("/")    # [現在のURL+"/"]と通信時、実行
 def index():
