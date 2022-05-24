@@ -1,12 +1,10 @@
 """Connect Database"""
 
-#from sqlite3 import connect
-#DATABASE = "database.db"
-from psycopg2 import connect
+import psycopg2
 DATABASE = "postgres://pstpacxxjqbbjd:0601cbccc17a7d5c9ad8a6b64b8da716997c62db65a80f952b0933dd63ede6ab@ec2-44-194-117-205.compute-1.amazonaws.com:5432/d3mj922dqsq6qd"
 
 def connect(sql:str, parameter:list=[], commit=False):
-    con = connect(DATABASE)
+    con = psycopg2.connect(DATABASE)
     cur = con.cursor()
     if parameter:
         db_data = cur.execute(sql,parameter)
