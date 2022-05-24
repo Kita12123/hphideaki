@@ -4,12 +4,16 @@ from flask import render_template, url_for, request, redirect
 
 @app.route("/")    # [現在のURL+"/"]と通信時、実行
 def index():
-    return render_template(
-        "index.html",
+    if db.connect("SELECT * FROM history ORDER BY _date_ ASC") == None:
+        historys = {"date":"", "title":"", "document":""}
+    else:
         historys = [
             {"date":row[0], "title":row[1], "document":row[2]}
                 for row in db.connect("SELECT * FROM history ORDER BY _date_ ASC").fetchall()
             ]
+    return render_template(
+        "index.html",
+        historys = historys
         )
 
 @app.route("/add-history", methods=["POST"])
