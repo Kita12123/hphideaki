@@ -7,18 +7,14 @@ SQL = DB()
 @app.route("/")    # [現在のURL+"/"]と通信時、実行
 def index():
     SQL.open()
-    try:
-        print(SQL.cur.execute("SELECT * FROM history ORDER BY _date_ ASC").fetchall())
-        historys = [
-            {"date":row[0], "title":row[1], "document":row[2]}
-                for row in SQL.cur.execute("SELECT * FROM history ORDER BY _date_ ASC").fetchall()
-            ]
-    except(AttributeError):
-        historys = []
+    SQL.cur.execute("SELECT * FROM history ORDER BY _date_ ASC")
     SQL.close()
     return render_template(
         "index.html",
-        historys = historys
+        historys = [
+            {"date":row[0], "title":row[1], "document":row[2]}
+                for row in SQL.cur.fetchall()
+            ]
         )
 
 @app.route("/add-history", methods=["POST"])
