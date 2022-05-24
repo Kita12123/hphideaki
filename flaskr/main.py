@@ -8,7 +8,7 @@ def index():
         "index.html",
         historys = [
             {"date":row[0], "title":row[1], "document":row[2]}
-                for row in db.connect("SELECT * FROM history ORDER BY date ASC")
+                for row in db.connect("SELECT * FROM history ORDER BY _date_ ASC")
                 ]
     )
 
