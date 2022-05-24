@@ -8,12 +8,13 @@ SQL = DB()
 def index():
     SQL.open()
     SQL.cur.execute("SELECT * FROM history ORDER BY _date_ ASC")
+    db_data = SQL.cur.fetchall()
     SQL.close()
     return render_template(
         "index.html",
         historys = [
             {"date":row[0], "title":row[1], "document":row[2]}
-                for row in SQL.cur.fetchall()
+                for row in db_data
             ]
         )
 
