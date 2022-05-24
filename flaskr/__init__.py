@@ -6,7 +6,7 @@ app = Flask(__name__)
 
 import flaskr.main
 
-from db import DB
+from flaskr.db import DB
 SQL = DB()
 SQL.open()
 SQL.cur.execute("CREATE TABLE IF NOT EXISTS history (_date_ TEXT, _title_ TEXT, _document_ TEXT)")
