@@ -5,7 +5,6 @@ from flask import render_template, url_for, request, redirect
 @app.route("/")    # [現在のURL+"/"]と通信時、実行
 def index():
     db_data = db.select("SELECT * FROM history ORDER BY _date_ ASC")
-    return db_data
     if db_data == None:
         historys = []
     else:
