@@ -4,17 +4,13 @@ from flask import render_template, url_for, request, redirect
 
 @app.route("/")    # [現在のURL+"/"]と通信時、実行
 def index():
-    try:
-        historys = [
-            {"date":row[0], "title":row[1], "document":row[2]}
-                for row in db.connect("SELECT * FROM history ORDER BY _date_ ASC")
-                ]
-    except:
-        historys = [{"date":"", "title":"", "document":""}]
     return render_template(
         "index.html",
-        historys = historys
-    )
+        historys = [
+            {"date":row[0], "title":row[1], "document":row[2]}
+                for row in db.connect("SELECT * FROM history ORDER BY _date_ ASC").fetchall()
+            ]
+        )
 
 @app.route("/add-history", methods=["POST"])
 def add_history():
