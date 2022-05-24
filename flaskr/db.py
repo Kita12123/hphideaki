@@ -18,7 +18,7 @@ def connect(sql:str, parameter:list=[], commit=False):
 def select(sql:str):
     with psycopg2.connect(DSN) as conn:
         with conn.cursor() as cur:
-            return cur.execute(sql).fetchall()
+            return cur.execute(sql)
 
 def insert(sql:str,param:list):
     with psycopg2.connect(DSN) as conn:
