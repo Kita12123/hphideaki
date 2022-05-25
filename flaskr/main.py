@@ -1,8 +1,6 @@
-from flaskr import app
+from flaskr import app, SQL
 from flask import render_template, url_for, request, redirect
 
-from flaskr.db import DB
-SQL = DB()
 
 @app.route("/")    # [現在のURL+"/"]と通信時、実行
 def index():
@@ -29,10 +27,8 @@ def add_history():
     SQL.close()
     return redirect(url_for("index"))
 
-@app.route("/del-history", methods=["POST"])
-def del_history():
-    date = request.form.get("date",default="????")
-    title = request.form.get("title",default="????")
+@app.route("/del/<date>/<title>")
+def del_history(date, title):
     SQL.open()
     SQL.cur.execute(f"DELETE FROM history WHERE _date_ = '{date}' AND _title_ = '{title}'")
     SQL.commit()
