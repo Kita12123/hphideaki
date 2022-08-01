@@ -43,7 +43,7 @@
             <td>{{ his.date }}</td>
             <td>{{ his.title }}</td>
             <td>{{ his.document }}</td>
-            <td><a href="{{ url_for("del_history", date=his.date, title=his.title) }}">削除</td>
+            <td><a href="{{ url_for('del_history', date=his.date, title=his.title) }}">削除</td>
           </tr>
         {% endfor %}
       </table>
