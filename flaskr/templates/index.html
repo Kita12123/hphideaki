@@ -7,9 +7,8 @@
   </head>
   <body>
     <h1>中島大河のホームページ</h1>
-    <img src="/static/images/よしなま02.jpg" alt="中島"/>
+    <img src="/static/images/よしなま04.jpg" alt="中島"/>
     <h2>経歴・履歴</h2>
-    <h3>追加</h3>
     <form method="post" action="{{ url_for('add_history') }}">
       <table>
         <tr>
@@ -24,7 +23,7 @@
         </tr>
       </table>
       <br>
-      <input type="submit" value="登録">
+      <input type="submit" value="追加">
     </form>
     <br>
     <h3>一覧</h3>
@@ -43,7 +42,7 @@
             <td>{{ his.date }}</td>
             <td>{{ his.title }}</td>
             <td>{{ his.document }}</td>
-            <td><a href="{{ url_for('del_history', date=his.date, title=his.title) }}">削除</td>
+            <td><a href="{{ url_for('del_history', date=his.date, title=his.title, document=his.document) }}">削除</td>
           </tr>
         {% endfor %}
       </table>
